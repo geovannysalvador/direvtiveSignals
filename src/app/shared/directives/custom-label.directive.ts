@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[customLabel]'
@@ -6,19 +6,34 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 export class CustomLabelDirective implements OnInit  {
 
   private htmlElement?:ElementRef<HTMLElement>
+  private _color:string = 'red';
+
+  // para resibir el color
+  @Input()
+  set color( value:string ){
+    this._color = value
+    this.setColorStyle();
+
+  }
 
   constructor( private el:ElementRef<HTMLElement> ) {
     // console.log('constructor de directiva');
-    console.log(el);
+    // console.log(el);
     this.htmlElement = el;
 
-    // manda el valor de hola muno al span del html
-    // this.htmlElement.nativeElement.innerHTML = 'Hola mundo'
    }
 
   ngOnInit(): void {
-    console.log('Directiva -NGOnInit');
+    // console.log('Directiva -NGOnInit');
+    this.setColorStyle();
 
+  }
+
+  // para cambiar el color
+  setColorStyle():void{
+    if( !this.htmlElement) return;
+
+    this.htmlElement!.nativeElement.style.color = this._color;
   }
 
 }
