@@ -21,7 +21,7 @@ export class ProductPageComponent {
   })
 
   changeColor(){
-    const colorsList = ['#dda15e', '#e3d5ca', '#a7c957', '#83c5be', '#f5cac3', '#e7c6ff', '#f7af9d', '#fcca46', '#dbd3d8']; // Lista de colores comunes
+    const colorsList = ['#fca311', '#fb5607', '#ff99c8', '#78290f', '#d90429', '#277da1', '#333d29', '#233d4d', '#3c096c']; // Lista de colores comunes
     const color = colorsList[Math.floor(Math.random() * colorsList.length)];
 
     this.color = color;
