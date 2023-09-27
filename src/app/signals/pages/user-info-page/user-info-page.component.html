@@ -15,14 +15,14 @@
     <!-- podemos hcaerlo asi o dejar un ngif
     <p>Correo: {{currentUser()?.email}}</p> -->
     <p>Correo: {{currentUser()!.email}}</p>
-    <p>Nombre: {{currentUser()!.first_name}} </p>
+    <p>Nombre: {{fullName()}} </p>
 
     <img [src]="currentUser()!.avatar" alt="avatar" class="rounded">
 
   </div>
 
-  <div class="col-8 text-danger">
-    <h2>Usuario no encintrado</h2>
+  <div class="col-8 text-danger" *ngIf="!userFound()">
+    <h2>Usuario no encontrado</h2>
   </div>
 
 </div>
