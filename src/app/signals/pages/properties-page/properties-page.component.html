@@ -1,1 +1,33 @@
-<p>properties-page works!</p>
+<h1>Mutaciones</h1>
+<hr>
+
+<div class="row">
+  <div class="col-6">
+
+    <input
+    #txtEmail
+     type="text"
+     class="form-control mb-4"
+     (input)="onFieldUpdates('email', txtEmail.value)">
+
+     <input
+     #txtFirstName
+      type="text"
+      class="form-control mb-4"
+      (input)="onFieldUpdates('First-Name', txtFirstName.value)">
+
+      <input
+      #txtLastName
+      type="text"
+      class="form-control mb-4"
+      (input)="onFieldUpdates('last-name', txtLastName.value)">
+
+  </div>
+
+  <div class="col-6">
+    <!-- Informacion de usuarios -->
+    <pre>
+      {{'Sin informacion aun'}}
+    </pre>
+  </div>
+</div>
