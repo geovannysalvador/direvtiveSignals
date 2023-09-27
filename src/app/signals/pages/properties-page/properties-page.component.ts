@@ -1,12 +1,13 @@
 import { User } from './../../interfaces/user-request.interface';
-import { Component, computed, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-properties-page',
   templateUrl: './properties-page.component.html',
   styleUrls: ['./properties-page.component.css']
 })
-export class PropertiesPageComponent {
+export class PropertiesPageComponent implements OnDestroy, OnInit {
+
 
   public user = signal<User>({
     id: 1,
@@ -17,6 +18,32 @@ export class PropertiesPageComponent {
   })
 
   public fullName = computed( ()=> `${this.user().first_name} ${this.user().last_name}`)
+
+  // efectos
+  public counter = signal(10);
+
+  public userChangedEffect = effect( ()=> {
+    console.log(`${this.user().first_name} - ${this.counter()}`);
+
+  });
+
+  ngOnInit(): void {
+    setInterval(()=>{
+      this.counter.update(current => current + 1)
+      // destruir cuando llegue al 15 puede estar o no.
+      if(this.counter() ==16)
+        this.userChangedEffect.destroy()
+    },1000)
+  }
+
+
+  ngOnDestroy(): void {
+    // this.userChangedEffect.destroy();
+  }
+
+  increaseBy(value:number){
+    this.counter.update(current => current + value)
+  }
 
   // Usar keyof y User(es la interfaz) para indicar que solo se usaran atributos de la misma
   onFieldUpdates(field:keyof User, value:string){
@@ -56,12 +83,12 @@ export class PropertiesPageComponent {
 
     //! tercera forma
     //El valor que retorne sera el nuevo valor de la señal
-    this.user.update(current =>{
-      return{
-        ...current,
-        [field]: value
-      }
-    })
+    // this.user.update(current =>{
+    //   return{
+    //     ...current,
+    //     [field]: value
+    //   }
+    // })
 
   }
 }
