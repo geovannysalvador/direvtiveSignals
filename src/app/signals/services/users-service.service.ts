@@ -7,10 +7,8 @@ import { SingleUserResponse, User } from '../interfaces/user-request.interface';
   providedIn: 'root'
 })
 export class UsersServiceService {
-
   // Injection de dependencias sin usar el constructor
   constructor() { }
-
   // Otra forma
   private http = inject(HttpClient);
 

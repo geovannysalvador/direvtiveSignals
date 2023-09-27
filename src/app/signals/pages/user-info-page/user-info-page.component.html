@@ -1,21 +1,23 @@
-<h1>Informacion de Usuario</h1>>
+<h1>Informacion de Usuario</h1>
 <hr>
 
 <div class="row">
   <div class="col-4">
-    <h3>Usuario Actual: </h3>
+    <h3>Usuario Actual: {{userId()}} </h3>
 
-    <button class="btn btn-primary">Anterior</button>
+    <button (click)="loadUser( userId() -1 )" class="btn btn-success">Anterior</button>
     &nbsp;
-    <button class="btn btn-primary">Siguiente</button>
+    <button (click)="loadUser( userId() +1 )" class="btn btn-success">Siguiente</button>
   </div>
 
-  <div class="col-8">
+  <div class="col-8" *ngIf="currentUser()">
     <h3>Usuario</h3>
-    <p>Correo:</p>
-    <p>Nombre:</p>
+    <!-- podemos hcaerlo asi o dejar un ngif
+    <p>Correo: {{currentUser()?.email}}</p> -->
+    <p>Correo: {{currentUser()!.email}}</p>
+    <p>Nombre: {{currentUser()!.first_name}} </p>
 
-    <img src="" alt="avatar">
+    <img [src]="currentUser()!.avatar" alt="avatar" class="rounded">
 
   </div>
 
