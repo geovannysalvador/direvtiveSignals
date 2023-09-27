@@ -8,26 +8,30 @@
     #txtEmail
      type="text"
      class="form-control mb-4"
-     (input)="onFieldUpdates('email', txtEmail.value)">
+     (input)="onFieldUpdates('email', txtEmail.value)"
+     [value]="user().email">
 
      <input
      #txtFirstName
       type="text"
       class="form-control mb-4"
-      (input)="onFieldUpdates('First-Name', txtFirstName.value)">
+      (input)="onFieldUpdates('first_name', txtFirstName.value)"
+      [value]="user().first_name">
 
       <input
       #txtLastName
       type="text"
       class="form-control mb-4"
-      (input)="onFieldUpdates('last-name', txtLastName.value)">
+      (input)="onFieldUpdates('last_name', txtLastName.value)"
+      [value]="user().last_name">
 
   </div>
 
   <div class="col-6">
     <!-- Informacion de usuarios -->
     <pre>
-      {{'Sin informacion aun'}}
+      {{user() | json }}
     </pre>
+    {{fullName() }}
   </div>
 </div>
